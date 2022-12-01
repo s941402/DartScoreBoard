@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ProgressBar
-        android:id="@+id/pbItemCharacterInfoBlood"
-
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:indeterminate="false"
-        android:layout_marginTop="30dp"
-        android:progress="100"
-        android:indeterminateDrawable="@drawable/circular_progress_bar"
+    <com.github.guilhe.views.CircularProgressView
+        android:id="@+id/cpvItemCharacterInfoBloodCircle"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:progress="100"
+        app:progressBarColor="@android:color/holo_red_dark"
+        app:progressBarThickness="8dp" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/sivItemCharacterInfoImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="30dp"
-        app:srcCompat="@drawable/test1"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintTop_toTopOf="@+id/cpvItemCharacterInfoBloodCircle"
         app:shapeAppearanceOverlay="@style/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/pbItemCharacterInfoBlood"
-        app:layout_constraintEnd_toEndOf="@+id/pbItemCharacterInfoBlood"
-        app:layout_constraintStart_toStartOf="@+id/pbItemCharacterInfoBlood"
-        app:layout_constraintTop_toTopOf="@+id/pbItemCharacterInfoBlood" />
+        app:srcCompat="@drawable/test1" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvItemCharacterInfoBlood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
+        tools:text="100 / 100" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

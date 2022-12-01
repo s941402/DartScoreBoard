@@ -6,6 +6,7 @@ import com.max.hsu.dartscoreboard.toolUtil.BindingViewHolder
 import com.max.hsu.dartscoreboard.viewHolder.ItemCharacterVH
 
 class CharactersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemCharacterVH(BindingViewHolder(parent))
     }

@@ -1,18 +1,22 @@
 package com.max.hsu.dartscoreboard.view
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.max.hsu.dartscoreboard.adapter.CharactersAdapter
 import com.max.hsu.dartscoreboard.adapter.NumberAdapter
+import com.max.hsu.dartscoreboard.base.BaseActivity
 import com.max.hsu.dartscoreboard.databinding.MainScoreBoardBinding
+import com.max.hsu.dartscoreboard.model.NumberModel
 import com.max.hsu.dartscoreboard.toolUtil.GridSpaceItemDecoration
 import com.max.hsu.dartscoreboard.toolUtil.toDp
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainScoreBoardActivity : AppCompatActivity() {
+
+class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
 
     private lateinit var binding: MainScoreBoardBinding
-    private val numberAdapter by lazy { NumberAdapter() }
+    private val scoreViewModel: MainScoreBoardViewModel by viewModel()
+    private val numberAdapter by lazy { NumberAdapter(this) }
     private val charactersAdapter by lazy { CharactersAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +24,10 @@ class MainScoreBoardActivity : AppCompatActivity() {
         binding = MainScoreBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecyclerview()
+    }
+
+    override fun numberClick(numberModel: NumberModel) {
+        scoreViewModel.saveAttackDamage(numberModel)
     }
 
     private fun initRecyclerview() {
@@ -37,6 +45,7 @@ class MainScoreBoardActivity : AppCompatActivity() {
                 )
             }
             adapter = numberAdapter
+            numberAdapter.submitList(scoreViewModel.getNumberModel())
         }
 
         binding.rvMainScoreBoardCharacters.apply {

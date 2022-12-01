@@ -51,11 +51,9 @@ android {
 }
 
 dependencies {
-
     implementation 'com.google.android.material:material:1.7.0'
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
-    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -71,4 +69,9 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    implementation 'com.github.guilhe:circular-progress-view:2.0.0'
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:$rootProject.koinVersion"
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$rootProject.koinAndroidVersion"
 }

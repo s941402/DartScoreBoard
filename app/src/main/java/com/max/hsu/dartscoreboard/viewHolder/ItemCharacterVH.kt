@@ -9,7 +9,7 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
 
     fun bindView() = itemView.apply {
         with(binding) {
-
+            cpvItemCharacterInfoBloodCircle.setProgress((0..100).random().toFloat())
         }
     }
 }
