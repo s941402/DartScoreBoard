@@ -6,6 +6,6 @@ fun injectFeature() = loadFeature
 
 private val loadFeature by lazy {
     loadKoinModules(
-        listOf( viewModelModule)
+        listOf(viewModelModule)
     )
 }

@@ -3,4 +3,6 @@
     <string name="gameStart">遊戲開始</string>
     <string name="gameContinue">繼續</string>
     <string name="gameReset">重置</string>
+    <string name="firstRound">第一回合</string>
+    <string name="secondRound">第二回合</string>
 </resources>

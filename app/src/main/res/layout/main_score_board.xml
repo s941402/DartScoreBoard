@@ -28,46 +28,82 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clMainScoreBoardRoundOne"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:minHeight="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clMainScoreBoardRoundTwo"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
 
 
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvMainScoreBoardAttackDamageRoundOne"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:minHeight="60dp"-->
-<!--                android:text="100"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="24sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMainScoreBoardAttackDamageRoundOneTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_b2"
+                android:gravity="center"
+                android:text="@string/firstRound"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMainScoreBoardAttackDamageRoundOneScore"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/bg_rect_white_radius_4_stroke_black_2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMainScoreBoardAttackDamageRoundOneTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clMainScoreBoardRoundTwo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:minHeight="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/clMainScoreBoardRoundOne">
 
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvMainScoreBoardAttackDamageRoundTwo"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:minHeight="60dp"-->
-<!--                android:text="100"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="24sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMainScoreBoardAttackDamageRoundSecondTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_b2"
+                android:gravity="center"
+                android:text="@string/secondRound"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMainScoreBoardAttackDamageRoundSecondScore"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMainScoreBoardAttackDamageRoundSecondTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

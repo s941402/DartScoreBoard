@@ -11,10 +11,10 @@ class MainScoreBoardViewModel : BaseViewModel() {
         NumberModel(it, if (it < 9) it + 1 else 0)
     }
 
-    fun saveAttackDamage(numberModel: NumberModel) {
-        val roundup = numberModel.round.roundIndex
-        if (roundup in 0 until 2) {
-            mapAttackDamage[roundup] = numberModel.realNum
+    fun saveAttackDamage(roundIndex: Int, score: Int) {
+        if (roundIndex in 0 until 2) {
+            mapAttackDamage[roundIndex] = score
         }
     }
+
 }
