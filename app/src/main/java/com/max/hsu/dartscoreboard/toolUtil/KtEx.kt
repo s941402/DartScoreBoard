@@ -1,7 +1,10 @@
 package com.max.hsu.dartscoreboard.toolUtil
 
+import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import kotlin.math.roundToInt
 
 fun Int.toDp(): Int = TypedValue.applyDimension(
@@ -23,3 +26,10 @@ fun String?.forceToInt(default: Int = 0): Int {
         default
     }
 }
+
+/**
+ * Extension method to provide simpler access to {@link ContextCompat#getColor(int)}.
+ */
+fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
+
+fun Context.getDrawableCompat(drawableResId: Int) = ContextCompat.getDrawable(this, drawableResId)

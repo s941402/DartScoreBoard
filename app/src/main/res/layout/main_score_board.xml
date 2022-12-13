@@ -16,6 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMainScoreBoardCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvMainScoreBoardCharacters" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clMainScoreBoardHeader"
@@ -24,7 +35,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rvMainScoreBoardNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvMainScoreBoardCharacters">
+        app:layout_constraintTop_toBottomOf="@+id/rvMainScoreBoardCard">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clMainScoreBoardRoundOne"
@@ -59,14 +70,14 @@
                 android:maxLength="2"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:background="@drawable/bg_rect_white_radius_4_stroke_black_2"
+                android:background="@drawable/bg_rect_1a000000_stroke_black_1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvMainScoreBoardAttackDamageRoundOneTitle" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clMainScoreBoardRoundTwo"
@@ -97,6 +108,7 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:inputType="number"
+                android:background="@drawable/bg_rect_white_stroke_black_1"
                 android:maxLength="2"
                 android:textColor="@color/black"
                 android:textSize="24sp"
