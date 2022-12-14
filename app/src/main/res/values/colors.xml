@@ -12,4 +12,8 @@
     <color name="color_1a000000">#1a000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_eb781e">#eb781e</color>
+    <color name="color_ffeb50">#ffeb50</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_fa">#fafafa</color>
+    <color name="gray_0d">#0d000000</color>
 </resources>

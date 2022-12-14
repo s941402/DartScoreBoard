@@ -1,22 +1,26 @@
 package com.max.hsu.dartscoreboard.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.Gson
 import com.max.hsu.dartscoreboard.R
 import com.max.hsu.dartscoreboard.adapter.CardAdapter
 import com.max.hsu.dartscoreboard.adapter.CharactersAdapter
 import com.max.hsu.dartscoreboard.adapter.NumberAdapter
 import com.max.hsu.dartscoreboard.base.BaseActivity
 import com.max.hsu.dartscoreboard.databinding.MainScoreBoardBinding
+import com.max.hsu.dartscoreboard.model.AbilityType
 import com.max.hsu.dartscoreboard.model.CardModel
 import com.max.hsu.dartscoreboard.model.NumberModel
 import com.max.hsu.dartscoreboard.model.RoundType
 import com.max.hsu.dartscoreboard.toolUtil.GridSpaceItemDecoration
 import com.max.hsu.dartscoreboard.toolUtil.forceToInt
 import com.max.hsu.dartscoreboard.toolUtil.toDp
+import com.max.hsu.dartscoreboard.view.question.QuestionActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -46,7 +50,7 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
     }
 
     override fun cardClick(cardModel: CardModel) {
-        showAlert()
+        showAlert(cardModel)
     }
 
     private fun initData() {
@@ -200,16 +204,32 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         }
     }
 
-    private fun showAlert() {
+    private fun showAlert(cardModel: CardModel) {
         MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.dialogTitle))
             .setMessage(resources.getString(R.string.dialogMessage))
             .setNegativeButton(resources.getString(R.string.dialogCancel)) { dialog, which ->
                 // Respond to negative button press
+                dialog.dismiss()
             }
             .setPositiveButton(resources.getString(R.string.dialogConfirm)) { dialog, which ->
                 // Respond to positive button press
+                Intent().apply {
+                    setClass(this@MainScoreBoardActivity, QuestionActivity::class.java)
+                    putExtra("questionModel", Gson().toJson(cardModel))
+                    questionLauncher.launch(this)
+                }
             }
             .show()
     }
+
+    private val questionLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
+            if (activityResult.resultCode == RESULT_OK) {
+                activityResult.data?.let {
+                    val abilityType = it.getIntExtra("ability", -1)
+                    binding.ivMainScoreBoardTotalAbility.text = AbilityType.from(abilityType)
+                }
+            }
+        }
 }

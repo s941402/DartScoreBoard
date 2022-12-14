@@ -30,5 +30,5 @@ data class NumberModel(
 }
 
 enum class RoundType(val text: String,val roundIndex: Int) {
-    ROUND_ONE("確認", 0), ROUND_TWO("攻擊", 1), ROUND_FULL("已滿兩次攻擊", 2)
+    ROUND_ONE("確認", 0), ROUND_TWO("確認", 1), ROUND_FULL("已滿兩次攻擊", 2)
 }

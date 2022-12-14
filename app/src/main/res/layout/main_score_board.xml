@@ -20,8 +20,8 @@
         android:id="@+id/rvMainScoreBoardCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,73 @@
         app:layout_constraintBottom_toTopOf="@+id/rvMainScoreBoardNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvMainScoreBoardCard">
+        app:layout_constraintTop_toBottomOf="@+id/rvMainScoreBoardCard"
+        app:layout_constraintVertical_weight="1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clMainScoreBoardTotalMain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_200"
+            android:minHeight="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/clMainScoreBoardRoundOne"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMainScoreBoardTotalAttack"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="start|center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintHorizontal_weight="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivMainScoreBoardTotalAbility"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="總計：XX" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ivMainScoreBoardTotalAbility"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintHorizontal_weight="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnMainScoreBoardTotalAttack"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvMainScoreBoardTotalAttack"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="沒效果" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMainScoreBoardTotalAttack"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:background="@color/color_eb781e"
+                android:textSize="20sp"
+                android:text="@string/attack"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@+id/ivMainScoreBoardTotalAbility"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clMainScoreBoardRoundOne"
@@ -65,12 +131,12 @@
                 android:id="@+id/tvMainScoreBoardAttackDamageRoundOneScore"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="@drawable/bg_rect_1a000000_stroke_black_1"
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="2"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:background="@drawable/bg_rect_1a000000_stroke_black_1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,9 +172,9 @@
                 android:id="@+id/tvMainScoreBoardAttackDamageRoundSecondScore"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="@drawable/bg_rect_white_stroke_black_1"
                 android:gravity="center"
                 android:inputType="number"
-                android:background="@drawable/bg_rect_white_stroke_black_1"
                 android:maxLength="2"
                 android:textColor="@color/black"
                 android:textSize="24sp"

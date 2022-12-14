@@ -10,7 +10,12 @@
 
     <string name="dialogTitle">再次確認</string>
     <string name="dialogMessage">確定要使用嗎?</string>
+    <string name="dialogAnswerMessage">確定您所選的答案嗎?</string>
     <string name="dialogConfirm">確定</string>
     <string name="dialogCancel">取消</string>
+    <string name="attack">攻擊</string>
+
+    <string name="countdownTimesUp">時間到!</string>
+    <string name="totalAttack">總計：%1$s</string>
 
 </resources>
