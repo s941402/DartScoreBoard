@@ -7,6 +7,7 @@
     <string name="secondRound">第二回合</string>
     <string name="bloodVolume">%1$d / %2$d</string>
     <string name="topicText">%1$s\n%2$d題</string>
+    <string name="emptyCard">已無題目</string>
 
     <string name="dialogTitle">再次確認</string>
     <string name="dialogMessage">確定要使用嗎?</string>
@@ -16,6 +17,7 @@
     <string name="attack">攻擊</string>
 
     <string name="countdownTimesUp">時間到!</string>
-    <string name="totalAttack">總計：%1$s</string>
+    <string name="totalAttack">總計：%1$d</string>
+    <string name="alreadyTakeCard">已抽卡</string>
 
 </resources>

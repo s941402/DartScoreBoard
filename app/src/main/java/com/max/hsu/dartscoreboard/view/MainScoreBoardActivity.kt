@@ -20,6 +20,7 @@ import com.max.hsu.dartscoreboard.model.RoundType
 import com.max.hsu.dartscoreboard.toolUtil.GridSpaceItemDecoration
 import com.max.hsu.dartscoreboard.toolUtil.forceToInt
 import com.max.hsu.dartscoreboard.toolUtil.toDp
+import com.max.hsu.dartscoreboard.toolUtil.visible
 import com.max.hsu.dartscoreboard.view.question.QuestionActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,6 +40,15 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         initRecyclerview()
         setObserver()
         initData()
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener() {
+        binding.btnMainScoreBoardTotalAttack.setOnClickListener {
+            scoreViewModel.attack()
+        }
+
+        binding.tvMainScoreBoardCardCover.setOnClickListener { }
     }
 
     override fun numberClick(numberModel: NumberModel) {
@@ -49,13 +59,13 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         }
     }
 
-    override fun cardClick(cardModel: CardModel) {
-        showAlert(cardModel)
+    override fun cardClick(cardModel: CardModel, position: Int) {
+        showAlert(cardModel, position)
     }
 
     private fun initData() {
-        scoreViewModel.getCharactersModel()
-        scoreViewModel.getCardsModel()
+        scoreViewModel.getInitCharactersModel()
+        scoreViewModel.getInitCardsModel()
         scoreViewModel.getNumberModel(RoundType.ROUND_ONE)
     }
 
@@ -108,7 +118,7 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
                 val score = binding.tvMainScoreBoardAttackDamageRoundSecondScore.text.toString()
                     .forceToInt()
                 scoreViewModel.saveAttackDamage(numberModel.round.roundIndex, score)
-                scoreViewModel.goRoundTwo()
+                scoreViewModel.calculateAttack()
             }
             else -> {}
         }
@@ -196,15 +206,46 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         }
 
         scoreViewModel.charactersResult.observe(this) {
-            charactersAdapter.submitList(it)
+            if (charactersAdapter.currentList.isEmpty()) {
+                charactersAdapter.submitList(it)
+            } else {
+                charactersAdapter.notifyItemRangeChanged(0, it.size)
+                nextRound()
+            }
         }
 
         scoreViewModel.cardResult.observe(this) {
-            cardAdapter.submitList(it)
+            if (cardAdapter.currentList.isEmpty()) {
+                cardAdapter.submitList(it)
+            } else {
+                cardAdapter.notifyItemRangeChanged(0, it.size)
+            }
+        }
+
+        scoreViewModel.totalAttackResult.observe(this) {
+            if (it >= 0) {
+                binding.tvMainScoreBoardTotalAttack.text = getString(R.string.totalAttack, it)
+            }
+        }
+
+        scoreViewModel.gameOverResult.observe(this) {
+
         }
     }
 
-    private fun showAlert(cardModel: CardModel) {
+    private fun nextRound() {
+        scoreViewModel.cleanResult()
+        with(binding) {
+            tvMainScoreBoardCardCover.visible(false)
+            tvMainScoreBoardTotalAttack.text = ""
+            ivMainScoreBoardTotalAbility.text = ""
+            tvMainScoreBoardAttackDamageRoundOneScore.text = ""
+            tvMainScoreBoardAttackDamageRoundSecondScore.text = ""
+        }
+    }
+
+
+    private fun showAlert(cardModel: CardModel, position: Int) {
         MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.dialogTitle))
             .setMessage(resources.getString(R.string.dialogMessage))
@@ -217,6 +258,7 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
                 Intent().apply {
                     setClass(this@MainScoreBoardActivity, QuestionActivity::class.java)
                     putExtra("questionModel", Gson().toJson(cardModel))
+                    putExtra("position", position)
                     questionLauncher.launch(this)
                 }
             }
@@ -228,8 +270,13 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
             if (activityResult.resultCode == RESULT_OK) {
                 activityResult.data?.let {
                     val abilityType = it.getIntExtra("ability", -1)
+                    val questionId = it.getIntExtra("question", -1)
+                    val position = it.getIntExtra("position", -1)
                     binding.ivMainScoreBoardTotalAbility.text = AbilityType.from(abilityType)
+                    binding.tvMainScoreBoardCardCover.visible(true)
+                    scoreViewModel.updateCardsModel(questionId, position, abilityType)
                 }
             }
         }
+
 }

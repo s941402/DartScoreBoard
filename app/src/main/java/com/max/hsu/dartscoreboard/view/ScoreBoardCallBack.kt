@@ -5,5 +5,5 @@ import com.max.hsu.dartscoreboard.model.NumberModel
 
 interface ScoreBoardCallBack {
     fun numberClick(numberModel : NumberModel)
-    fun cardClick(cardModel : CardModel)
+    fun cardClick(cardModel : CardModel,position: Int)
 }

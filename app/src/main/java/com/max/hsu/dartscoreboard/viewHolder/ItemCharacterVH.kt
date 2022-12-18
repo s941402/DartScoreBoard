@@ -19,7 +19,7 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
                 TOTAL_BLOOD_VOLUME
             )
             ivItemCharacterInfoSelected.isVisible = mData.isMaster
-            cpvItemCharacterInfoBloodCircle.setProgress(100f)
+            cpvItemCharacterInfoBloodCircle.setProgress(mData.currentBlood * 100f / TOTAL_BLOOD_VOLUME)
         }
     }
 }

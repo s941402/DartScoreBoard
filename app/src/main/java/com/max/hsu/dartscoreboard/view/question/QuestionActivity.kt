@@ -40,6 +40,11 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
             Gson().fromJsonExtend(selectedStr)
         }
     }
+    private val position by lazy {
+        intent.extras?.getInt("position") ?: -1
+    }
+
+    private var questionId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +89,8 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
                 showAlert()
             }
         }
+
+        binding.clQuestionBoardAnswer.setOnClickListener { }
     }
 
 
@@ -101,6 +108,7 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
     private fun setObserver() {
         questionViewModel.topicQuestionResult.observe(this) {
             binding.tvQuestionBoardQuestion.text = it.title
+            questionId = it.id
         }
 
         questionViewModel.questionResult.observe(this) {
@@ -124,6 +132,8 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
     private fun returnData(ability: Int) {
         Intent().apply {
             putExtra("ability", ability)
+            putExtra("position", position)
+            if (questionId != null) putExtra("question", questionId)
             setResult(RESULT_OK, this)
         }
         goBack()

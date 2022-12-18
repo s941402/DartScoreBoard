@@ -12,14 +12,20 @@ class ItemCardVH(itemBinding: BindingViewHolder<ItemCardInfoBinding>) :
 
     fun bindView(mData: CardModel, listener: ScoreBoardCallBack) = itemView.apply {
         with(binding) {
-            tvItemCardInfoText.text =
+            val quantity = mData.cardTopic.quantity - mData.answerList.size
+            tvItemCardInfoText.text = if (quantity > 0) {
                 context.getString(
                     R.string.topicText,
                     mData.cardTopic.topicName,
-                    mData.cardTopic.quantity
+                    quantity
                 )
+            } else {
+                context.getString(R.string.emptyCard)
+            }
             ivItemCardInfoQuestion.setOnClickListener {
-                listener.cardClick(mData)
+                if (quantity > 0) {
+                    listener.cardClick(mData, layoutPosition)
+                }
             }
         }
     }
