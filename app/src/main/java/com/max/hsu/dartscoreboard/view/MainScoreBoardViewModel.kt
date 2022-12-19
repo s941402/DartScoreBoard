@@ -29,7 +29,7 @@ class MainScoreBoardViewModel : BaseViewModel() {
     private var _gameOverResult = MutableLiveData<Int>()
     val gameOverResult: LiveData<Int> = _gameOverResult
 
-    private var ability: Int = AbilityType.Nothing.id
+    private var ability: Int? = AbilityType.Nothing.id
 
 
     fun getInitCharactersModel() {
@@ -79,8 +79,19 @@ class MainScoreBoardViewModel : BaseViewModel() {
     }
 
     fun calculateAttack() {
-        val multiple = getMultiple(ability)
-        _totalAttackResult.value = mapAttackDamage.sum() * multiple
+        ability?.let {
+            val multiple = getMultiple(it)
+            _totalAttackResult.value = mapAttackDamage.sum() * multiple
+        }
+    }
+
+    fun checkCanAttack(): String {
+        return when {
+            ability == null -> "尚未抽題目"
+            mapAttackDamage[0] < 0 -> "尚未輸入第一回合分數"
+            mapAttackDamage[1] < 0 -> "尚未輸入第二回合分數"
+            else -> ""
+        }
     }
 
     fun attack() {
@@ -134,6 +145,7 @@ class MainScoreBoardViewModel : BaseViewModel() {
     fun cleanResult() {
         mapAttackDamage[0] = -1
         mapAttackDamage[1] = -1
+        ability = null
         getNumberModel()
     }
 

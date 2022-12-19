@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
@@ -97,4 +98,13 @@ private fun <T : View> T.clickEnable(): Boolean {
  * */
 fun View.visible(visible: Boolean, useGone: Boolean = true) {
     this.visibility = if (visible) View.VISIBLE else if (useGone) View.GONE else View.INVISIBLE
+}
+
+/** 取得螢幕高度 */
+fun Context.makeCenterToast(msg: String?, useShort: Boolean = true, gravity: Int = Gravity.CENTER) {
+    msg?.let {
+        if (it.isNotBlank()) {
+            ToastUtil.showStringToast(this, it, useShort, gravity)
+        }
+    }
 }

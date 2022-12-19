@@ -14,11 +14,8 @@ enum class CardTopic(
     val quantity: Int,
     val jsonFileName: String
 ) {
-    Program(0, "程式", 10, "technology.json"), Company(1, "公司相關", 5, "technology.json"), Technology(
-        2,
-        "科技業相關",
-        10,
-        "technology.json"
-    ),
-    Funny(3, "趣味題", 10, "technology.json")
+    Program(0, "程式", 10, "engineering.json"),
+    Company(1, "公司相關", 5, "company.json"),
+    Technology(2, "科技業相關", 10, "technology.json"),
+    Funny(3, "趣味題", 10, "funny.json")
 }

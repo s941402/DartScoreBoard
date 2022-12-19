@@ -1,8 +1,6 @@
 package com.max.hsu.dartscoreboard.adapter
 
-import android.annotation.SuppressLint
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.max.hsu.dartscoreboard.model.CharactersModel
@@ -24,16 +22,4 @@ class CharactersAdapter(private val listener: ScoreBoardCallBack) :
             is ItemCharacterVH -> holder.bindView(getItem(position))
         }
     }
-}
-
-private val differCallback = object : DiffUtil.ItemCallback<CharactersModel>(){
-    override fun areItemsTheSame(oldItem: CharactersModel, newItem: CharactersModel): Boolean {
-        return  oldItem.playerId == newItem.playerId
-    }
-
-    @SuppressLint("DiffUtilEquals")
-    override fun areContentsTheSame(oldItem: CharactersModel, newItem: CharactersModel): Boolean {
-        return oldItem == newItem
-    }
-
 }

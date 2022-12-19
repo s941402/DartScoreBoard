@@ -5,21 +5,16 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import com.max.hsu.dartscoreboard.R
 import com.max.hsu.dartscoreboard.adapter.QuestionAdapter
 import com.max.hsu.dartscoreboard.base.BaseActivity
 import com.max.hsu.dartscoreboard.databinding.QuestionBoardBinding
-import com.max.hsu.dartscoreboard.model.AbilityType
 import com.max.hsu.dartscoreboard.model.CardModel
 import com.max.hsu.dartscoreboard.model.CardTopic
 import com.max.hsu.dartscoreboard.model.QuestionModel
-import com.max.hsu.dartscoreboard.toolUtil.clickWithTrigger
-import com.max.hsu.dartscoreboard.toolUtil.fromJsonExtend
-import com.max.hsu.dartscoreboard.toolUtil.textColor
-import com.max.hsu.dartscoreboard.toolUtil.visible
+import com.max.hsu.dartscoreboard.toolUtil.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -156,7 +151,7 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        makeCenterToast(message)
     }
 
     private fun showAlert() {

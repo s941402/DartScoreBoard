@@ -6,6 +6,7 @@ import com.max.hsu.dartscoreboard.databinding.ItemCharacterInfoBinding
 import com.max.hsu.dartscoreboard.model.CharactersModel
 import com.max.hsu.dartscoreboard.toolUtil.BindingViewHolder
 import com.max.hsu.dartscoreboard.toolUtil.TOTAL_BLOOD_VOLUME
+import com.max.hsu.dartscoreboard.toolUtil.visible
 
 class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) :
     BindingViewHolder<ItemCharacterInfoBinding>(itemBinding.binding) {
@@ -18,6 +19,7 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
                 mData.currentBlood,
                 TOTAL_BLOOD_VOLUME
             )
+            ivItemCharacterInfoDeath.visible(mData.isDeath || mData.currentBlood <= 0)
             ivItemCharacterInfoSelected.isVisible = mData.isMaster
             cpvItemCharacterInfoBloodCircle.setProgress(mData.currentBlood * 100f / TOTAL_BLOOD_VOLUME)
         }
