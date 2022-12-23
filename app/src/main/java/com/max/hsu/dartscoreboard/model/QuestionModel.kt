@@ -19,12 +19,18 @@ data class QuestionModel(
 enum class AbilityType(
     val id: Int,
     val abilityName: String,
-    val multiple : Int
+    val multiple: Int,
+    val isAll: Boolean
 ) {
-    Nothing(-1, "沒效果",1),Double(0, "兩倍攻擊",2),Triple(1, "三倍攻擊",3);
+    Nothing(-1, "沒效果", 1, false), FullAttack(0, "全體攻擊", 1, true),
+    Double(1, "單體兩倍攻擊", 2, false),
+    Triple(2, "單體三倍攻擊", 3, false),
+    Treatment(3, "治療", 1, false);
 
     companion object {
-        fun from(type: Int): String = values().find { it.id == type }?.abilityName ?: DEFAULT_ABILITY
+        fun from(type: Int): String =
+            values().find { it.id == type }?.abilityName ?: DEFAULT_ABILITY
+
         fun getMultiple(type: Int) = values().find { it.id == type }?.multiple ?: 1
     }
 }
