@@ -20,12 +20,13 @@ enum class AbilityType(
     val id: Int,
     val abilityName: String,
     val multiple: Int,
-    val isAll: Boolean
+    val personNum: Int
 ) {
-    Nothing(-1, "沒效果", 1, false), FullAttack(0, "全體攻擊", 1, true),
-    Double(1, "單體兩倍攻擊", 2, false),
-    Triple(2, "單體三倍攻擊", 3, false),
-    Treatment(3, "治療", 1, false);
+    Nothing(-1, "沒效果", 1, 1),
+    FullAttack(0, "全體攻擊", 1, 3),
+    Double(1, "單體兩倍攻擊", 2, 1),
+    Triple(2, "單體三倍攻擊", 3, 1),
+    Treatment(3, "治療", 1, 1);
 
     companion object {
         fun from(type: Int): String =

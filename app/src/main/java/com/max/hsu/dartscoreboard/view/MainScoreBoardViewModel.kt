@@ -47,7 +47,7 @@ class MainScoreBoardViewModel : BaseViewModel() {
     }
 
     private fun getCardModel() =
-        MutableList(4) { index ->
+        MutableList(CardTopic.values().size) { index ->
             CardModel(index, CardTopic.values().getOrNull(index) ?: CardTopic.Program)
         }
 

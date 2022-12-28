@@ -13,10 +13,7 @@ import com.max.hsu.dartscoreboard.adapter.CharactersAdapter
 import com.max.hsu.dartscoreboard.adapter.NumberAdapter
 import com.max.hsu.dartscoreboard.base.BaseActivity
 import com.max.hsu.dartscoreboard.databinding.MainScoreBoardBinding
-import com.max.hsu.dartscoreboard.model.AbilityType
-import com.max.hsu.dartscoreboard.model.CardModel
-import com.max.hsu.dartscoreboard.model.NumberModel
-import com.max.hsu.dartscoreboard.model.RoundType
+import com.max.hsu.dartscoreboard.model.*
 import com.max.hsu.dartscoreboard.toolUtil.*
 import com.max.hsu.dartscoreboard.view.question.QuestionActivity
 import com.max.hsu.dartscoreboard.view.winner.WinnerActivity
@@ -185,11 +182,11 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
 
     private fun initCardList() {
         binding.rvMainScoreBoardCard.apply {
-            layoutManager = GridLayoutManager(this@MainScoreBoardActivity, 4)
+            layoutManager = GridLayoutManager(this@MainScoreBoardActivity, CardTopic.values().size)
             if (itemDecorationCount == 0) {
                 addItemDecoration(
                     GridSpaceItemDecoration(
-                        4,
+                        CardTopic.values().size,
                         2.toDp(),
                         false,
                         topSpacing = 0,
@@ -273,7 +270,7 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         makeCenterToast(message)
     }
 
-    private fun goWinnerView(position: Int){
+    private fun goWinnerView(position: Int) {
         Intent().apply {
             setClass(this@MainScoreBoardActivity, WinnerActivity::class.java)
             putExtra("position", position)
