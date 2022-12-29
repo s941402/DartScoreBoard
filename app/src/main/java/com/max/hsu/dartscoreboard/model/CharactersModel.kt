@@ -7,5 +7,6 @@ data class CharactersModel(
     var currentBlood: Int = TOTAL_BLOOD_VOLUME,
     var isMaster: Boolean,
     var isDeath: Boolean = false,
-    var isSelected: Boolean = false
+    var isSelected: Boolean = false,
+    var canSelect: Boolean = false
 )

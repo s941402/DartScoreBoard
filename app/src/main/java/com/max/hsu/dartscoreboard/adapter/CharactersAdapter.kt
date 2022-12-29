@@ -19,7 +19,7 @@ class CharactersAdapter(private val listener: ScoreBoardCallBack) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ItemCharacterVH -> holder.bindView(getItem(position))
+            is ItemCharacterVH -> holder.bindView(getItem(position),listener)
         }
     }
 }

@@ -63,6 +63,13 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         showAlert(cardModel, position)
     }
 
+    override fun changeChooseCharacters(charactersModel: CharactersModel, position: Int) {
+        scoreViewModel.updatePreChooseCharacters()
+        checkCharactersDataAndRefreshItemView(scoreViewModel.getCharactersChoosePosition())
+        scoreViewModel.updateCurrentChooseCharacters(position)
+        checkCharactersDataAndRefreshItemView(scoreViewModel.getCharactersChoosePosition())
+    }
+
     private fun initData() {
         scoreViewModel.getInitCharactersModel()
         scoreViewModel.getInitCardsModel()
@@ -214,6 +221,13 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
             }
         }
 
+        scoreViewModel.charactersStatusResult.observe(this) {
+            if (it) {
+                makeCenterToast(getString(R.string.chooseTarget))
+                charactersAdapter.notifyItemRangeChanged(0, charactersAdapter.itemCount)
+            }
+        }
+
         scoreViewModel.cardResult.observe(this) {
             if (cardAdapter.currentList.isEmpty()) {
                 cardAdapter.submitList(it)
@@ -241,6 +255,12 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
             ivMainScoreBoardTotalAbility.text = ""
             tvMainScoreBoardAttackDamageRoundOneScore.text = ""
             tvMainScoreBoardAttackDamageRoundSecondScore.text = ""
+        }
+    }
+
+    private fun checkCharactersDataAndRefreshItemView(position: Int) {
+        if (position in 0 until charactersAdapter.currentList.size) {
+            charactersAdapter.notifyItemChanged(position)
         }
     }
 
@@ -291,5 +311,4 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
                 }
             }
         }
-
 }
