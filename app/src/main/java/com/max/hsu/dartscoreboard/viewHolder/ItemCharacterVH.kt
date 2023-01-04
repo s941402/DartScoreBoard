@@ -20,7 +20,13 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
                 mData.currentBlood,
                 TOTAL_BLOOD_VOLUME
             )
-            clItemCharacterInfoRoot.setBackgroundResource(if (mData.isSelected) R.drawable.bg_rect_white_stroke_red_1 else 0)
+            if (mData.isSelected) {
+                clItemCharacterInfoRoot.setBackgroundResource(R.drawable.bg_rect_white_stroke_red_1)
+                lavItemCharacterInfoAttack.visible(true)
+            } else {
+                clItemCharacterInfoRoot.setBackgroundResource(0)
+                lavItemCharacterInfoAttack.visible(false)
+            }
             ivItemCharacterInfoDeath.visible(mData.isDeath || mData.currentBlood <= 0)
             ivItemCharacterInfoSelected.isVisible = mData.isMaster
             cpvItemCharacterInfoBloodCircle.setProgress(

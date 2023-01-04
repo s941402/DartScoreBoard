@@ -252,7 +252,8 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         with(binding) {
             tvMainScoreBoardCardCover.visible(false)
             tvMainScoreBoardTotalAttack.text = ""
-            ivMainScoreBoardTotalAbility.text = ""
+            ivMainScoreBoardTotalAbility.setBackgroundResource(0)
+            btnMainScoreBoardTotalAttack.text = getString(R.string.attack)
             tvMainScoreBoardAttackDamageRoundOneScore.text = ""
             tvMainScoreBoardAttackDamageRoundSecondScore.text = ""
         }
@@ -305,7 +306,9 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
                     val abilityType = it.getIntExtra("ability", -1)
                     val questionId = it.getIntExtra("question", -1)
                     val position = it.getIntExtra("position", -1)
-                    binding.ivMainScoreBoardTotalAbility.text = AbilityType.from(abilityType)
+                    val ability = AbilityType.fromType(abilityType)
+                    binding.ivMainScoreBoardTotalAbility.setBackgroundResource(ability.drawableResId)
+                    binding.btnMainScoreBoardTotalAttack.text = ability.abilityName
                     binding.tvMainScoreBoardCardCover.visible(true)
                     scoreViewModel.updateCardsModel(questionId, position, abilityType)
                 }
