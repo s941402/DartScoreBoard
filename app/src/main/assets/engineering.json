@@ -33,7 +33,7 @@
       "91"
     ],
     "answer": 2,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 3,
@@ -93,7 +93,7 @@
       "github"
     ],
     "answer": 3,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 8,

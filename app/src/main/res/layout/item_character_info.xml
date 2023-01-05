@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clItemCharacterInfoRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -46,6 +47,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/black"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
         app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
         app:layout_constraintTop_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
@@ -61,5 +65,18 @@
         app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
         app:layout_constraintTop_toTopOf="@+id/sivItemCharacterInfoImage"
         app:srcCompat="@drawable/death_cross" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavItemCharacterInfoAttack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintTop_toTopOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="attack_animation.json"
+        app:lottie_loop="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

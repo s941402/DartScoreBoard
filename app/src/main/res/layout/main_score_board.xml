@@ -20,7 +20,7 @@
         android:id="@+id/rvMainScoreBoardCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,11 +55,12 @@
             android:id="@+id/clMainScoreBoardTotalMain"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/teal_200"
             android:minHeight="60dp"
             app:layout_constraintBottom_toTopOf="@+id/clMainScoreBoardRoundOne"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMainScoreBoardTotalAttack"
@@ -68,11 +69,11 @@
                 android:gravity="start|center"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black"
+                android:textColor="@color/color_ff0000"
                 android:textSize="20sp"
                 app:layout_constraintHorizontal_weight="4"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ivMainScoreBoardTotalAbility"
+                app:layout_constraintEnd_toStartOf="@+id/flMainScoreBoardTotalAbility"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,38 +81,62 @@
                 tools:text="總計：XX" />
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/ivMainScoreBoardTotalAbility"
+            <FrameLayout
+                android:id="@+id/flMainScoreBoardTotalAbility"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintHorizontal_weight="4"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnMainScoreBoardTotalAttack"
+                app:layout_constraintEnd_toStartOf="@+id/flMainScoreBoardTotalAttack"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvMainScoreBoardTotalAttack"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="沒效果">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMainScoreBoardTotalAbility"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/flMainScoreBoardTotalAttack"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tvMainScoreBoardTotalAttack"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="沒效果" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flMainScoreBoardTotalAttack"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintStart_toEndOf="@+id/flMainScoreBoardTotalAbility"
+                app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMainScoreBoardTotalAttack"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:background="@color/color_eb781e"
+                android:background="@drawable/bg_sticky"
                 android:textSize="20sp"
                 android:text="@string/attack"
+                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintHorizontal_weight="3"
                 app:layout_constraintStart_toEndOf="@+id/ivMainScoreBoardTotalAbility"
                 app:layout_constraintTop_toTopOf="parent" />
-
+            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

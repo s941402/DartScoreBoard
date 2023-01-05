@@ -1,10 +1,12 @@
 package com.max.hsu.dartscoreboard.view
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.max.hsu.dartscoreboard.base.BaseViewModel
 import com.max.hsu.dartscoreboard.model.*
 import com.max.hsu.dartscoreboard.model.AbilityType.Companion.getMultiple
+import com.max.hsu.dartscoreboard.toolUtil.Player
 import com.max.hsu.dartscoreboard.toolUtil.TOTAL_BLOOD_VOLUME
 
 class MainScoreBoardViewModel : BaseViewModel() {
@@ -14,6 +16,9 @@ class MainScoreBoardViewModel : BaseViewModel() {
     // 總原始資料
     private var _charactersResult = MutableLiveData<MutableList<CharactersModel>>()
     val charactersResult: LiveData<MutableList<CharactersModel>> = _charactersResult
+
+    private var _charactersStatusResult = MutableLiveData<Boolean>()
+    val charactersStatusResult: LiveData<Boolean> = _charactersStatusResult
 
     // 總原始資料
     private var _cardResult = MutableLiveData<MutableList<CardModel>>()
@@ -29,15 +34,15 @@ class MainScoreBoardViewModel : BaseViewModel() {
     private var _gameOverResult = MutableLiveData<Int>()
     val gameOverResult: LiveData<Int> = _gameOverResult
 
-    private var ability: Int? = AbilityType.Nothing.id
-
+    private var ability: Int? = null
+    private var charactersChoosePosition = -1
 
     fun getInitCharactersModel() {
         _charactersResult.value = getCharactersModel()
     }
 
     private fun getCharactersModel() =
-        MutableList(4) {
+        MutableList(Player) {
             CharactersModel(it, TOTAL_BLOOD_VOLUME, it == 0)
         }
 
@@ -47,7 +52,7 @@ class MainScoreBoardViewModel : BaseViewModel() {
     }
 
     private fun getCardModel() =
-        MutableList(4) { index ->
+        MutableList(CardTopic.values().size) { index ->
             CardModel(index, CardTopic.values().getOrNull(index) ?: CardTopic.Program)
         }
 
@@ -75,7 +80,36 @@ class MainScoreBoardViewModel : BaseViewModel() {
             _cardResult.value = cardResult
         }
         ability = abilityType
+        updateCharactersStatus(abilityType)
         calculateAttack()
+    }
+
+    private fun updateCharactersStatus(abilityType: Int) {
+        val charactersData = _charactersResult.value ?: getCharactersModel()
+        val needSelected =
+            abilityType == AbilityType.Double.id || abilityType == AbilityType.Triple.id || abilityType == AbilityType.Nothing.id
+        if (needSelected) charactersData.forEach { it.canSelect = !it.isMaster }
+        _charactersStatusResult.value = needSelected
+    }
+
+    fun getCharactersChoosePosition() = charactersChoosePosition
+
+    fun updatePreChooseCharacters() {
+        val charactersData = _charactersResult.value ?: getCharactersModel()
+        if (charactersChoosePosition in 0 until charactersData.size) {
+            charactersData.getOrNull(charactersChoosePosition)?.isSelected = false
+        }
+    }
+
+    // 更新次數方案新選擇的改為true並記錄新的位置
+    fun updateCurrentChooseCharacters(charactersPosition: Int) {
+        val charactersData = _charactersResult.value ?: getCharactersModel()
+        if (charactersPosition in 0 until charactersData.size) {
+            charactersData.getOrNull(charactersPosition)?.apply {
+                isSelected = true
+                charactersChoosePosition = charactersPosition
+            }
+        }
     }
 
     fun calculateAttack() {
@@ -86,8 +120,11 @@ class MainScoreBoardViewModel : BaseViewModel() {
     }
 
     fun checkCanAttack(): String {
+        val needSelected =
+            ability == AbilityType.Double.id || ability == AbilityType.Triple.id || ability == AbilityType.Nothing.id
         return when {
             ability == null -> "尚未抽題目"
+            needSelected && charactersResult.value?.find { it.isSelected } == null -> "尚未選擇攻擊對象"
             mapAttackDamage[0] < 0 -> "尚未輸入第一回合分數"
             mapAttackDamage[1] < 0 -> "尚未輸入第二回合分數"
             else -> ""
@@ -97,34 +134,78 @@ class MainScoreBoardViewModel : BaseViewModel() {
     fun attack() {
         val damage = _totalAttackResult.value ?: 0
         val charactersData = _charactersResult.value ?: getCharactersModel()
-        var masterPosition = 0
-        charactersData.forEachIndexed { index, it ->
-            if (!it.isMaster) {
-                it.currentBlood -= damage
-                it.isDeath = it.currentBlood <= 0
-            } else {
-                masterPosition = index
-                it.isMaster = false
+        val masterPosition = charactersData.indexOfFirst { it.isMaster }
+        Log.i("TAG", "attack damage: $damage")
+        Log.i("TAG", "attack ability: $ability")
+        when (ability) {
+            AbilityType.FullAttack.id -> {
+                attackAll(charactersData, damage)
+            }
+            AbilityType.Treatment.id -> {
+                treatment(charactersData, damage)
+            }
+            else -> {
+                attackOne(charactersData, damage)
             }
         }
-        if (checkIsGameOver(charactersData, masterPosition)) {
+        if (checkIsGameOver(charactersData)) {
             _charactersResult.value = charactersData
             _gameOverResult.value = masterPosition
         } else {
+            masterRoundChange(charactersData, masterPosition)
+            cleanSelected(charactersData)
             _charactersResult.value = charactersData
         }
     }
 
-    private fun checkIsGameOver(
+    private fun attackOne(charactersData: MutableList<CharactersModel>, damage: Int) {
+        charactersData.forEach {
+            if (it.isSelected) {
+                it.currentBlood -= damage
+                it.isDeath = it.currentBlood <= 0
+            }
+        }
+    }
+
+    private fun attackAll(
+        charactersData: MutableList<CharactersModel>,
+        damage: Int
+    ) {
+        charactersData.forEach {
+            if (!it.isMaster) {
+                it.currentBlood -= damage
+                it.isDeath = it.currentBlood <= 0
+            }
+        }
+    }
+
+    private fun treatment(
+        charactersData: MutableList<CharactersModel>,
+        damage: Int
+    ) {
+        charactersData.forEach {
+            if (it.isMaster) {
+                val blood = it.currentBlood.plus(damage)
+                it.currentBlood = if (blood > TOTAL_BLOOD_VOLUME) TOTAL_BLOOD_VOLUME else blood
+            }
+        }
+    }
+
+    private fun checkIsGameOver(charactersList: MutableList<CharactersModel>): Boolean {
+        return charactersList.count { it.isDeath || it.currentBlood <= 0 } >= Player - 3
+    }
+
+    private fun masterRoundChange(
         charactersList: MutableList<CharactersModel>,
         masterPosition: Int
-    ): Boolean {
+    ) {
         var nextPosition = masterPosition + 1
+        charactersList.getOrNull(masterPosition)?.let { it.isMaster = false }
         while (nextPosition < charactersList.size) {
             charactersList.getOrNull(nextPosition)?.let {
                 if (!it.isDeath) {
                     it.isMaster = true
-                    return false
+                    return
                 }
             }
             nextPosition++
@@ -134,17 +215,24 @@ class MainScoreBoardViewModel : BaseViewModel() {
             charactersList.getOrNull(nextPosition)?.let {
                 if (!it.isDeath) {
                     it.isMaster = true
-                    return false
+                    return
                 }
             }
             nextPosition++
         }
-        return true
+    }
+
+    private fun cleanSelected(charactersList: MutableList<CharactersModel>) {
+        charactersList.forEach {
+            it.canSelect = false
+            it.isSelected = false
+        }
     }
 
     fun cleanResult() {
         mapAttackDamage[0] = -1
         mapAttackDamage[1] = -1
+        charactersChoosePosition = -1
         ability = null
         getNumberModel()
     }

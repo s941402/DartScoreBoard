@@ -75,4 +75,5 @@ dependencies {
     implementation "io.insert-koin:koin-core:$rootProject.koinVersion"
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:$rootProject.koinAndroidVersion"
+    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
 }
