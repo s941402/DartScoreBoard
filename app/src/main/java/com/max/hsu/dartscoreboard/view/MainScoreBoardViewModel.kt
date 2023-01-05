@@ -42,8 +42,15 @@ class MainScoreBoardViewModel : BaseViewModel() {
     }
 
     private fun getCharactersModel() =
-        MutableList(Player) {
-            CharactersModel(it, TOTAL_BLOOD_VOLUME, it == 0)
+        MutableList(CharactersPlayer.values().size) { index ->
+            val players = CharactersPlayer.values().getOrNull(index) ?: CharactersPlayer.ONE
+            CharactersModel(
+                players.id,
+                players.iconHeadDrawable,
+                players.iconBodyDrawable,
+                players.currentBlood,
+                index == 0
+            )
         }
 
 
@@ -88,7 +95,9 @@ class MainScoreBoardViewModel : BaseViewModel() {
         val charactersData = _charactersResult.value ?: getCharactersModel()
         val needSelected =
             abilityType == AbilityType.Double.id || abilityType == AbilityType.Triple.id || abilityType == AbilityType.Nothing.id
+        Log.i("TAG", "updateCharactersStatus needSelected: $needSelected")
         if (needSelected) charactersData.forEach { it.canSelect = !it.isMaster }
+        Log.i("TAG", "updateCharactersStatus charactersData: $charactersData")
         _charactersStatusResult.value = needSelected
     }
 
@@ -135,8 +144,6 @@ class MainScoreBoardViewModel : BaseViewModel() {
         val damage = _totalAttackResult.value ?: 0
         val charactersData = _charactersResult.value ?: getCharactersModel()
         val masterPosition = charactersData.indexOfFirst { it.isMaster }
-        Log.i("TAG", "attack damage: $damage")
-        Log.i("TAG", "attack ability: $ability")
         when (ability) {
             AbilityType.FullAttack.id -> {
                 attackAll(charactersData, damage)
@@ -148,7 +155,7 @@ class MainScoreBoardViewModel : BaseViewModel() {
                 attackOne(charactersData, damage)
             }
         }
-        if (checkIsGameOver(charactersData)) {
+        if (isGameOver(charactersData)) {
             _charactersResult.value = charactersData
             _gameOverResult.value = masterPosition
         } else {
@@ -191,8 +198,8 @@ class MainScoreBoardViewModel : BaseViewModel() {
         }
     }
 
-    private fun checkIsGameOver(charactersList: MutableList<CharactersModel>): Boolean {
-        return charactersList.count { it.isDeath || it.currentBlood <= 0 } >= Player - 3
+    private fun isGameOver(charactersList: MutableList<CharactersModel>): Boolean {
+        return charactersList.count { it.isDeath || it.currentBlood <= 0 } >= Player - 1
     }
 
     private fun masterRoundChange(
@@ -220,6 +227,25 @@ class MainScoreBoardViewModel : BaseViewModel() {
             }
             nextPosition++
         }
+    }
+
+    fun statisticsScoreWinner(): Int {
+        val charactersItems = _charactersResult.value ?: getCharactersModel()
+        var maxBlood = Int.MIN_VALUE
+        var count = 0
+        var charactersIndex = 0
+        charactersItems.forEachIndexed { index, charactersModel ->
+            if (maxBlood < charactersModel.currentBlood) {
+                maxBlood = charactersModel.currentBlood
+                count = 1
+                charactersIndex = index
+            } else if (maxBlood == charactersModel.currentBlood) {
+                count++
+            }
+        }
+        Log.i("TAG", "statisticsScoreWinner: $count")
+        Log.i("TAG", "statisticsScoreWinner: $maxBlood")
+        return if (count > 1) -1 else charactersIndex
     }
 
     private fun cleanSelected(charactersList: MutableList<CharactersModel>) {

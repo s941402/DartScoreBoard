@@ -71,7 +71,7 @@
                 android:paddingEnd="20dp"
                 android:textColor="@color/color_ff0000"
                 android:textSize="20sp"
-                app:layout_constraintHorizontal_weight="4"
+                app:layout_constraintHorizontal_weight="3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/flMainScoreBoardTotalAbility"
                 app:layout_constraintHorizontal_bias="0.5"

@@ -15,9 +15,15 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
 
     fun bindView(mData: CharactersModel, listener: ScoreBoardCallBack) = itemView.apply {
         with(binding) {
+            val blood = when {
+                mData.currentBlood >= 500 -> 500
+                mData.currentBlood <= 0 -> 0
+                else -> mData.currentBlood
+            }
+            sivItemCharacterInfoImage.setBackgroundResource(mData.iconHeadDrawable)
             tvItemCharacterInfoBlood.text = context.getString(
                 R.string.bloodVolume,
-                mData.currentBlood,
+                blood,
                 TOTAL_BLOOD_VOLUME
             )
             if (mData.isSelected) {
@@ -27,18 +33,18 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
                 clItemCharacterInfoRoot.setBackgroundResource(0)
                 lavItemCharacterInfoAttack.visible(false)
             }
-            ivItemCharacterInfoDeath.visible(mData.isDeath || mData.currentBlood <= 0)
+            ivItemCharacterInfoDeath.visible(mData.isDeath || blood <= 0)
             ivItemCharacterInfoSelected.isVisible = mData.isMaster
             cpvItemCharacterInfoBloodCircle.setProgress(
-                mData.currentBlood * 100f / TOTAL_BLOOD_VOLUME,
+                blood * 100f / TOTAL_BLOOD_VOLUME,
                 animate = true
             )
 
-
-            if (mData.canSelect) {
-                clItemCharacterInfoRoot.setOnClickListener {
-                    if (!mData.isMaster) listener.changeChooseCharacters(mData, layoutPosition)
-                }
+            clItemCharacterInfoRoot.setOnClickListener {
+                if (mData.canSelect && !mData.isMaster) listener.changeChooseCharacters(
+                    mData,
+                    layoutPosition
+                )
             }
         }
     }

@@ -18,5 +18,5 @@ enum class CardTopic(
     Company(1, "公司題", 5, "company.json"),
     Technology(2, "科技業題", 10, "technology.json"),
     Funny(3, "趣味題", 10, "funny.json"),
-    Presentation(4, "簡報題", 15, "funny.json")
+    Slides(4, "簡報題", 15, "slides.json")
 }

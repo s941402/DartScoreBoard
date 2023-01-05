@@ -1,0 +1,110 @@
+[
+  {
+    "id": 0,
+    "title": "請問熊班在交通距離搜尋的功能中,使用了什麼演算法?",
+    "selectQuestion": [
+      "GPS",
+      "BFS",
+      "DFS",
+      "NTFS"
+    ],
+    "answer": 1,
+    "ability": 0
+  },
+  {
+    "id": 1,
+    "title": "請問下列哪一個「不是」Tasker使用了Line的Richmenu新功能後,帶來的改善?",
+    "selectQuestion": [
+      "提升menu切換速度",
+      "降低server負擔",
+      "自動追蹤使用者點擊成效",
+      "menu不會意外消失"
+    ],
+    "answer": 2,
+    "ability": 0
+  },
+  {
+    "id": 2,
+    "title": "請問在智能客服功能的設計當中,需要從什麼東西開始創建?",
+    "selectQuestion": [
+      "分類器",
+      "意圖",
+      "類神經網路模型",
+      "自然語言的分詞規則"
+    ],
+    "answer": 1,
+    "ability": 0
+  },
+  {
+    "id": 3,
+    "title": "請問如果需要在一個不同的頁面,置入或移除「迷你聊」的功能,需要改動多少行程式碼?",
+    "selectQuestion": [
+      "1行",
+      "10行",
+      "100行",
+      "不需要改程式碼,後台按一按就行"
+    ],
+    "answer": 0,
+    "ability": 0
+  },
+  {
+    "id": 4,
+    "title": "請問小雞laravel-mix的整體打包花費時間,改進後降到了大約原先的多少%",
+    "selectQuestion": [
+      "80%",
+      "60%",
+      "40%",
+      "20%"
+    ],
+    "answer": 2,
+    "ability": 0
+  },
+  {
+    "id": 5,
+    "title": "請問518和哪個瀏覽器告白了?",
+    "selectQuestion": [
+      "IE瀏覽器",
+      "Firefox",
+      "Safari",
+      "以上皆非,518怎麼可能會跟瀏覽器告白"
+    ],
+    "answer": 3,
+    "ability": 0
+  },
+  {
+    "id": 6,
+    "title": "請問TDD是一種什麼樣的開發技巧?",
+    "selectQuestion": [
+      "先寫測試再開發程式",
+      "先畫流程圖再開發程式",
+      "先做好UI的設計再開發程式",
+      "讓AI自動幫你開發程式"
+    ],
+    "answer": 0,
+    "ability": 0
+  },
+  {
+    "id": 7,
+    "title": "請問在介紹Strategy Pattern時,使用了熊班APP的哪個功能作為例子?",
+    "selectQuestion": [
+      "即時聯絡功能",
+      "職缺列表頁",
+      "註冊及登入功能",
+      "求職喜好頁"
+    ],
+    "answer": 3,
+    "ability": 0
+  },
+  {
+    "id": 8,
+    "title": "請問下列哪項,沒有出現在Android組的未來展望裡?",
+    "selectQuestion": [
+      "加強上線前的檢查",
+      "加快APP推播通知的發送速度",
+      "提升程式架構的一致性",
+      "完善開發流程"
+    ],
+    "answer": 1,
+    "ability": 0
+  }
+]

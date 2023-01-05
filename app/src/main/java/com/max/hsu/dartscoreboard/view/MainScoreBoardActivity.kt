@@ -2,6 +2,8 @@ package com.max.hsu.dartscoreboard.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -49,6 +51,17 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         }
 
         binding.tvMainScoreBoardCardCover.setOnClickListener { }
+
+        binding.tvMainScoreBoardTotalAttack.setOnLongClickListener {
+            val winner = scoreViewModel.statisticsScoreWinner()
+            Log.i("TAG", "setOnClickListener: $winner")
+            if (winner in 0 until Player) {
+                goWinnerView(winner)
+            } else {
+                showToast(getString(R.string.tiebreaker))
+            }
+            true
+        }
     }
 
     override fun numberClick(numberModel: NumberModel) {
@@ -71,6 +84,7 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
     }
 
     private fun initData() {
+        binding.tvMainScoreBoardTotalAttack.text = getString(R.string.totalAttack, 0)
         scoreViewModel.getInitCharactersModel()
         scoreViewModel.getInitCardsModel()
         scoreViewModel.getNumberModel(RoundType.ROUND_ONE)
@@ -116,16 +130,24 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
     private fun saveNumber(numberModel: NumberModel) {
         when (numberModel.round) {
             RoundType.ROUND_ONE -> {
-                val score =
-                    binding.tvMainScoreBoardAttackDamageRoundOneScore.text.toString().forceToInt()
-                scoreViewModel.saveAttackDamage(numberModel.round.roundIndex, score)
-                scoreViewModel.goRoundTwo()
+                val textOne = binding.tvMainScoreBoardAttackDamageRoundOneScore.text.toString()
+                if (textOne.isBlank()) {
+                    showToast("尚未輸入第一回合分數")
+                } else {
+                    val score = textOne.forceToInt()
+                    scoreViewModel.saveAttackDamage(numberModel.round.roundIndex, score)
+                    scoreViewModel.goRoundTwo()
+                }
             }
             RoundType.ROUND_TWO -> {
-                val score = binding.tvMainScoreBoardAttackDamageRoundSecondScore.text.toString()
-                    .forceToInt()
-                scoreViewModel.saveAttackDamage(numberModel.round.roundIndex, score)
-                scoreViewModel.calculateAttack()
+                val textTwo = binding.tvMainScoreBoardAttackDamageRoundSecondScore.text.toString()
+                if (textTwo.isBlank()) {
+                    showToast("尚未輸入第二回合分數")
+                } else {
+                    val score = textTwo.forceToInt()
+                    scoreViewModel.saveAttackDamage(numberModel.round.roundIndex, score)
+                    scoreViewModel.calculateAttack()
+                }
             }
             else -> {}
         }
@@ -251,7 +273,7 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         scoreViewModel.cleanResult()
         with(binding) {
             tvMainScoreBoardCardCover.visible(false)
-            tvMainScoreBoardTotalAttack.text = ""
+            tvMainScoreBoardTotalAttack.text = getString(R.string.totalAttack, 0)
             ivMainScoreBoardTotalAbility.setBackgroundResource(0)
             btnMainScoreBoardTotalAttack.text = getString(R.string.attack)
             tvMainScoreBoardAttackDamageRoundOneScore.text = ""
@@ -314,4 +336,11 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
                 }
             }
         }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return if (keyCode == KeyEvent.KEYCODE_BACK) {
+            false
+        } else
+            super.onKeyDown(keyCode, event)
+    }
 }

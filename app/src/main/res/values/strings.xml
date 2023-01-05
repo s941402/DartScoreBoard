@@ -16,10 +16,10 @@
     <string name="dialogCancel">取消</string>
     <string name="attack">攻擊</string>
     <string name="chooseTarget">請選擇一位目標</string>
-
     <string name="countdownTimesUp">時間到!</string>
     <string name="totalAttack">總計：%1$d</string>
     <string name="alreadyTakeCard">已抽卡</string>
     <string name="winnerTeam">第%1$s隊獲勝</string>
+    <string name="tiebreaker">目前尚未分出勝負</string>
 
 </resources>
