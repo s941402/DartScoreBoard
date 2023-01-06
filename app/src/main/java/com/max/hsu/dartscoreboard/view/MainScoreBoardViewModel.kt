@@ -1,6 +1,5 @@
 package com.max.hsu.dartscoreboard.view
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.max.hsu.dartscoreboard.base.BaseViewModel
@@ -95,9 +94,7 @@ class MainScoreBoardViewModel : BaseViewModel() {
         val charactersData = _charactersResult.value ?: getCharactersModel()
         val needSelected =
             abilityType == AbilityType.Double.id || abilityType == AbilityType.Triple.id || abilityType == AbilityType.Nothing.id
-        Log.i("TAG", "updateCharactersStatus needSelected: $needSelected")
         if (needSelected) charactersData.forEach { it.canSelect = !it.isMaster }
-        Log.i("TAG", "updateCharactersStatus charactersData: $charactersData")
         _charactersStatusResult.value = needSelected
     }
 
@@ -243,8 +240,6 @@ class MainScoreBoardViewModel : BaseViewModel() {
                 count++
             }
         }
-        Log.i("TAG", "statisticsScoreWinner: $count")
-        Log.i("TAG", "statisticsScoreWinner: $maxBlood")
         return if (count > 1) -1 else charactersIndex
     }
 

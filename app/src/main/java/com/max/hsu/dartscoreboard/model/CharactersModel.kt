@@ -17,12 +17,18 @@ data class CharactersModel(
 
 enum class CharactersPlayer(
     val id: Int,
-    val iconHeadDrawable: Int,
-    val iconBodyDrawable: Int,
+    @DrawableRes val iconHeadDrawable: Int,
+    @DrawableRes val iconBodyDrawable: Int,
     val currentBlood: Int
 ) {
-    ONE(0, R.drawable.ic_chick_head_body, R.drawable.ic_chick_full_body, TOTAL_BLOOD_VOLUME),
-    TWO(1, R.drawable.ic_tim_head_body, R.drawable.ic_tim_full_body, TOTAL_BLOOD_VOLUME),
+    ONE(0, R.drawable.ic_chick_head_body, R.drawable.ic_chick_full_body, 100),
+    TWO(1, R.drawable.ic_tim_head_body, R.drawable.ic_tim_full_body, 100),
     THREE(2, R.drawable.ic_bird_head_body, R.drawable.ic_bird_full_body, TOTAL_BLOOD_VOLUME),
-    FOUR(3, R.drawable.ic_bear_head_body, R.drawable.ic_bear_full_body, TOTAL_BLOOD_VOLUME),
+    FOUR(3, R.drawable.ic_bear_head_body, R.drawable.ic_bear_full_body, 100);
+
+    companion object {
+        fun fromType(type: Int): CharactersPlayer =
+            values().find { it.id == type } ?: ONE
+
+    }
 }

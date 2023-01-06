@@ -20,7 +20,7 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
                 mData.currentBlood <= 0 -> 0
                 else -> mData.currentBlood
             }
-            sivItemCharacterInfoImage.setBackgroundResource(mData.iconHeadDrawable)
+            sivItemCharacterInfoImage.setImageResource(mData.iconHeadDrawable)
             tvItemCharacterInfoBlood.text = context.getString(
                 R.string.bloodVolume,
                 blood,

@@ -37,16 +37,44 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavForumSecretBaseConfetti"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/glForumSecretBaseFurnitureTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ivForumSecretBaseFullBody"
+        app:layout_constraintTop_toTopOf="@+id/ivForumSecretBaseWall"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="confetti.json"
+        app:lottie_loop="true" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvForumSecretBaseText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/glForumSecretBaseFurnitureTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ivForumSecretBaseFullBody"
+        app:layout_constraintTop_toTopOf="@+id/ivForumSecretBaseWall" />
+
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivForumSecretBaseFullBody"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:transitionName="@string/forumBasementTrans"
         app:layout_constraintBottom_toTopOf="@+id/glForumSecretBaseBodyBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/glForumSecretBaseFurnitureTop"
-        app:srcCompat="@drawable/chick_full_body"
-        tools:targetApi="lollipop" />
+        app:srcCompat="@drawable/ic_chick_full_body" />
 
     <LinearLayout
         android:id="@+id/llForumSecretBaseFooter"
@@ -60,14 +88,14 @@
         app:layout_constraintVertical_weight="0.28">
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvForumSecretBaseText"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavForumSecretBaseChampion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="40dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="trophy.json"
+            app:lottie_loop="false" />
 
     </LinearLayout>
 

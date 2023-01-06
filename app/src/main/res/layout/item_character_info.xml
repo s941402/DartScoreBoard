@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
         app:layout_constraintTop_toTopOf="@+id/cpvItemCharacterInfoBloodCircle"
         app:shapeAppearanceOverlay="@style/circle"
-        app:srcCompat="@drawable/test1" />
+        app:srcCompat="@drawable/ic_chick_head_body" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivItemCharacterInfoSelected"

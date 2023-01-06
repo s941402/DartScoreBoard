@@ -22,4 +22,6 @@
     <string name="winnerTeam">第%1$s隊獲勝</string>
     <string name="tiebreaker">目前尚未分出勝負</string>
 
+    <string name="forumBasementTrans">photoProfile</string>
+
 </resources>

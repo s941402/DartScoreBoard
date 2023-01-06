@@ -2,9 +2,8 @@ package com.max.hsu.dartscoreboard.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -19,6 +18,7 @@ import com.max.hsu.dartscoreboard.model.*
 import com.max.hsu.dartscoreboard.toolUtil.*
 import com.max.hsu.dartscoreboard.view.question.QuestionActivity
 import com.max.hsu.dartscoreboard.view.winner.WinnerActivity
+import com.max.hsu.dartscoreboard.viewHolder.ItemCharacterVH
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -54,7 +54,6 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
 
         binding.tvMainScoreBoardTotalAttack.setOnLongClickListener {
             val winner = scoreViewModel.statisticsScoreWinner()
-            Log.i("TAG", "setOnClickListener: $winner")
             if (winner in 0 until Player) {
                 goWinnerView(winner)
             } else {
@@ -317,9 +316,16 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
         Intent().apply {
             setClass(this@MainScoreBoardActivity, WinnerActivity::class.java)
             putExtra("position", position)
-            startActivity(this)
+            startActivity(
+                this, ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this@MainScoreBoardActivity,
+                    (binding.rvMainScoreBoardCharacters.findViewHolderForAdapterPosition(position) as ItemCharacterVH).binding.sivItemCharacterInfoImage,
+                    getString(R.string.forumBasementTrans)
+                ).toBundle()
+            )
         }
     }
+
 
     private val questionLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
@@ -336,11 +342,4 @@ class MainScoreBoardActivity : BaseActivity(), ScoreBoardCallBack {
                 }
             }
         }
-
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        return if (keyCode == KeyEvent.KEYCODE_BACK) {
-            false
-        } else
-            super.onKeyDown(keyCode, event)
-    }
 }
