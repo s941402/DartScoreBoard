@@ -4,7 +4,7 @@
         <shape
             android:shape="oval">
             <!-- 背景顏色 -->
-            <solid android:color="@color/color_f9f9fC" />
+            <solid android:color="@color/color_FEA02C" />
 
             <!-- 矩形的圓角半徑 -->
             <corners android:radius="4dp" />

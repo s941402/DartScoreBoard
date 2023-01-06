@@ -18,7 +18,7 @@
     <string name="chooseTarget">請選擇一位目標</string>
     <string name="countdownTimesUp">時間到!</string>
     <string name="totalAttack">總計：%1$d</string>
-    <string name="alreadyTakeCard">已抽卡</string>
+    <string name="alreadyTakeCard">人生只有一次o_o，抽卡機會也只有一次T_T</string>
     <string name="winnerTeam">第%1$s隊獲勝</string>
     <string name="tiebreaker">目前尚未分出勝負</string>
 

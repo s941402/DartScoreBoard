@@ -17,6 +17,7 @@
         <item name="android:background">@drawable/bg_rect_white_radius_4_stroke_black_2</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
     </style>
 

@@ -21,10 +21,10 @@ enum class CharactersPlayer(
     @DrawableRes val iconBodyDrawable: Int,
     val currentBlood: Int
 ) {
-    ONE(0, R.drawable.ic_chick_head_body, R.drawable.ic_chick_full_body, 100),
-    TWO(1, R.drawable.ic_tim_head_body, R.drawable.ic_tim_full_body, 100),
+    ONE(0, R.drawable.ic_chick_head_body, R.drawable.ic_chick_full_body, TOTAL_BLOOD_VOLUME),
+    TWO(1, R.drawable.ic_tim_head_body, R.drawable.ic_tim_full_body, TOTAL_BLOOD_VOLUME),
     THREE(2, R.drawable.ic_bird_head_body, R.drawable.ic_bird_full_body, TOTAL_BLOOD_VOLUME),
-    FOUR(3, R.drawable.ic_bear_head_body, R.drawable.ic_bear_full_body, 100);
+    FOUR(3, R.drawable.ic_bear_head_body, R.drawable.ic_bear_full_body, TOTAL_BLOOD_VOLUME);
 
     companion object {
         fun fromType(type: Int): CharactersPlayer =
