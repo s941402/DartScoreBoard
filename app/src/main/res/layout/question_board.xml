@@ -72,17 +72,49 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivQuestionBoardAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="150dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/correct" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/ivQuestionBoardAnswer"
+            app:layout_constraintStart_toStartOf="@+id/ivQuestionBoardAnswer"
+            app:layout_constraintTop_toBottomOf="@+id/ivQuestionBoardAnswer">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivQuestionBoardEffect"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_full_attack"
+                tools:text="攻擊兩倍" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvQuestionBoardEffect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivQuestionBoardEffect"
+                app:layout_constraintStart_toEndOf="@+id/ivQuestionBoardEffect"
+                app:layout_constraintTop_toTopOf="@+id/ivQuestionBoardEffect"
+                tools:text="攻擊兩倍" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

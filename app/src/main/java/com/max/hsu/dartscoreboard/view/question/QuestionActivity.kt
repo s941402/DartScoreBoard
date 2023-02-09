@@ -1,16 +1,19 @@
 package com.max.hsu.dartscoreboard.view.question
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import com.max.hsu.dartscoreboard.R
 import com.max.hsu.dartscoreboard.adapter.QuestionAdapter
 import com.max.hsu.dartscoreboard.base.BaseActivity
 import com.max.hsu.dartscoreboard.databinding.QuestionBoardBinding
+import com.max.hsu.dartscoreboard.model.AbilityType
 import com.max.hsu.dartscoreboard.model.CardModel
 import com.max.hsu.dartscoreboard.model.CardTopic
 import com.max.hsu.dartscoreboard.model.QuestionModel
@@ -41,6 +44,10 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
 
     private var questionId: Int? = null
 
+    private lateinit var correctPlayer: MediaPlayer
+    private lateinit var errorPlayer: MediaPlayer
+    private lateinit var timeoutPlayer: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = QuestionBoardBinding.inflate(layoutInflater)
@@ -49,6 +56,13 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
         setObserver()
         getInitData()
         initView()
+    }
+
+    override fun onStop() {
+        if (::correctPlayer.isInitialized) correctPlayer.release()
+        if (::errorPlayer.isInitialized) errorPlayer.release()
+        if (::timeoutPlayer.isInitialized) timeoutPlayer.release()
+        super.onStop()
     }
 
     override fun onDestroy() {
@@ -61,7 +75,7 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
 
     private fun initView() {
         if (mTimer == null) {
-            mTimer = object : CountDownTimer(12000, 1000) {
+            mTimer = object : CountDownTimer(16000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     binding.tvQuestionBoardTime.apply {
                         val second = millisUntilFinished / 1000
@@ -72,6 +86,8 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
                 }
 
                 override fun onFinish() {
+                    timeoutPlayer = MediaPlayer.create(this@QuestionActivity, R.raw.arrived)
+                    if (binding.clQuestionBoardAnswer.visibility == View.GONE) timeoutPlayer.start()
                     binding.tvQuestionBoardTime.text = getString(R.string.countdownTimesUp)
                 }
             }.start()
@@ -164,13 +180,23 @@ class QuestionActivity : BaseActivity(), QuestionViewCallback {
                 // Respond to positive button press
                 binding.clQuestionBoardAnswer.visible(true)
                 val ability = if (questionViewModel.checkAnswer()) {
+                    correctPlayer = MediaPlayer.create(this, R.raw.correct)
+                    correctPlayer.start()
                     binding.ivQuestionBoardAnswer.setImageResource(R.drawable.correct)
-                    questionViewModel.getCorrectAnswer()
+                    val abilityNum = questionViewModel.getCorrectAnswer()
+                    val abilityType = AbilityType.fromType(abilityNum)
+                    binding.ivQuestionBoardEffect.setImageResource(abilityType.drawableResId)
+                    binding.tvQuestionBoardEffect.text = abilityType.abilityName
+                    abilityNum
                 } else {
+                    errorPlayer = MediaPlayer.create(this, R.raw.error)
+                    errorPlayer.start()
                     binding.ivQuestionBoardAnswer.setImageResource(R.drawable.error)
+                    binding.ivQuestionBoardEffect.setImageResource(AbilityType.Nothing.drawableResId)
+                    binding.tvQuestionBoardEffect.text = AbilityType.Nothing.abilityName
                     -1
                 }
-                Handler(Looper.getMainLooper()).postDelayed({ returnData(ability) }, 2000)
+                Handler(Looper.getMainLooper()).postDelayed({ returnData(ability) }, 3000)
             }.show()
     }
 }

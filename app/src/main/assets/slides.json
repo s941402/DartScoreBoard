@@ -21,7 +21,7 @@
       "menu不會意外消失"
     ],
     "answer": 2,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 2,
@@ -33,7 +33,7 @@
       "自然語言的分詞規則"
     ],
     "answer": 1,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 3,
@@ -45,7 +45,7 @@
       "不需要改程式碼,後台按一按就行"
     ],
     "answer": 0,
-    "ability": 0
+    "ability": 3
   },
   {
     "id": 4,
@@ -57,7 +57,7 @@
       "20%"
     ],
     "answer": 2,
-    "ability": 0
+    "ability": 2
   },
   {
     "id": 5,
@@ -69,7 +69,7 @@
       "以上皆非,518怎麼可能會跟瀏覽器告白"
     ],
     "answer": 3,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 6,
@@ -93,7 +93,7 @@
       "求職喜好頁"
     ],
     "answer": 3,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 8,
@@ -105,7 +105,7 @@
       "完善開發流程"
     ],
     "answer": 1,
-    "ability": 0
+    "ability": 2
   },
   {
     "id": 9,
@@ -117,7 +117,7 @@
       "線上點餐系統"
     ],
     "answer": 3,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 10,
@@ -129,7 +129,7 @@
       "找出會留言的人 → 找出類似的人 → 追蹤 → 推播"
     ],
     "answer": 2,
-    "ability": 0
+    "ability": 2
   },
   {
     "id": 11,
@@ -141,7 +141,7 @@
       "以上皆是"
     ],
     "answer": 3,
-    "ability": 0
+    "ability": 3
   },
   {
     "id": 12,
@@ -153,7 +153,7 @@
       "跟上潮流"
     ],
     "answer": 1,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 13,
@@ -165,7 +165,7 @@
       "熊班求職喜好頁"
     ],
     "answer": 2,
-    "ability": 0
+    "ability": 1
   },
   {
     "id": 14,

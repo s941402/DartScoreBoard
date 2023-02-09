@@ -16,7 +16,7 @@ class ItemCharacterVH(itemBinding: BindingViewHolder<ItemCharacterInfoBinding>) 
     fun bindView(mData: CharactersModel, listener: ScoreBoardCallBack) = itemView.apply {
         with(binding) {
             val blood = when {
-                mData.currentBlood >= 500 -> 500
+                mData.currentBlood >= TOTAL_BLOOD_VOLUME -> TOTAL_BLOOD_VOLUME
                 mData.currentBlood <= 0 -> 0
                 else -> mData.currentBlood
             }
