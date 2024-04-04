@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">DartScoreBoard</string>
+    <string name="gameStart">遊戲開始</string>
+    <string name="gameContinue">繼續</string>
+    <string name="gameReset">重置</string>
+    <string name="firstRound">第一回合</string>
+    <string name="secondRound">第二回合</string>
+    <string name="bloodVolume">%1$d / %2$d</string>
+    <string name="topicText">%1$s\n%2$d題</string>
+    <string name="emptyCard">已無題目</string>
+    <string name="answerNo">（%1$d） %2$s</string>
+
+    <string name="dialogTitle">再次確認</string>
+    <string name="dialogMessage">確定要使用嗎?</string>
+    <string name="dialogAnswerMessage">確定您所選的答案嗎?</string>
+    <string name="dialogConfirm">確定</string>
+    <string name="dialogCancel">取消</string>
+    <string name="attack">攻擊</string>
+    <string name="chooseTarget">請選擇一位目標</string>
+    <string name="countdownTimesUp">時間到!</string>
+    <string name="totalAttack">總計：%1$d</string>
+    <string name="alreadyTakeCard">人生只有一次o_o，抽卡機會也只有一次T_T</string>
+    <string name="winnerTeam">第%1$s隊獲勝</string>
+    <string name="tiebreaker">目前尚未分出勝負</string>
+
+    <string name="forumBasementTrans">photoProfile</string>
+
+</resources>

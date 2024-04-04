@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivForumSecretBaseWall"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/ivForumSecretBaseGround"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="0.5"
+        app:srcCompat="@drawable/secret_base_top" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivForumSecretBaseGround"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/llForumSecretBaseFooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivForumSecretBaseWall"
+        app:layout_constraintVertical_weight="0.2"
+        app:srcCompat="@drawable/secret_base_bottom" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glForumSecretBaseFurnitureTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavForumSecretBaseConfetti"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/glForumSecretBaseFurnitureTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ivForumSecretBaseFullBody"
+        app:layout_constraintTop_toTopOf="@+id/ivForumSecretBaseWall"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="confetti.json"
+        app:lottie_loop="true" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvForumSecretBaseText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/glForumSecretBaseFurnitureTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ivForumSecretBaseFullBody"
+        app:layout_constraintTop_toTopOf="@+id/ivForumSecretBaseWall" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivForumSecretBaseFullBody"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:transitionName="@string/forumBasementTrans"
+        app:layout_constraintBottom_toTopOf="@+id/glForumSecretBaseBodyBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glForumSecretBaseFurnitureTop"
+        app:srcCompat="@drawable/ic_chick_full_body" />
+
+    <LinearLayout
+        android:id="@+id/llForumSecretBaseFooter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivForumSecretBaseGround"
+        app:layout_constraintVertical_weight="0.28">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavForumSecretBaseChampion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="trophy.json"
+            app:lottie_loop="false" />
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glForumSecretBaseBodyBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glForumSecretBaseCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

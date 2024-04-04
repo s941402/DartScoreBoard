@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clItemCharacterInfoRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.github.guilhe.views.CircularProgressView
+        android:id="@+id/cpvItemCharacterInfoBloodCircle"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:progress="100"
+        app:progressBarColor="@android:color/holo_red_dark"
+        app:progressBarThickness="8dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sivItemCharacterInfoImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintTop_toTopOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:shapeAppearanceOverlay="@style/circle"
+        app:srcCompat="@drawable/ic_chick_head_body" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivItemCharacterInfoSelected"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="-5dp"
+        app:layout_constraintBottom_toTopOf="@+id/sivItemCharacterInfoImage"
+        app:layout_constraintStart_toStartOf="@+id/sivItemCharacterInfoImage"
+        app:layout_constraintEnd_toEndOf="@+id/sivItemCharacterInfoImage"
+        app:srcCompat="@drawable/crown"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvItemCharacterInfoBlood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintTop_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
+        tools:text="100 / 100" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivItemCharacterInfoDeath"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/sivItemCharacterInfoImage"
+        app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintTop_toTopOf="@+id/sivItemCharacterInfoImage"
+        app:srcCompat="@drawable/death_cross" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavItemCharacterInfoAttack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintEnd_toEndOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintStart_toStartOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:layout_constraintTop_toTopOf="@+id/cpvItemCharacterInfoBloodCircle"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="attack_animation.json"
+        app:lottie_loop="true" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

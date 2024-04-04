@@ -1,0 +1,122 @@
+[
+  {
+    "id": 0,
+    "title": "請問在下列哪個程式語言中 判斷式 0 == '0' 的結果不是 TRUE ?",
+    "selectQuestion": [
+      "PHP",
+      "JavaScript",
+      "C++",
+      "以上的結果都會是TRUE"
+    ],
+    "answer": 2,
+    "ability": 2
+  },
+  {
+    "id": 1,
+    "title": "請問在MySQL中 型態是 Signed TINYINT 的欄位 能儲存的數值範圍是?(以官方文件為準)",
+    "selectQuestion": [
+      "-128 到 127",
+      "-65536 到 65535",
+      "-2147483648 到 2147483647",
+      "以上皆非"
+    ],
+    "answer": 0,
+    "ability": 3
+  },
+  {
+    "id": 2,
+    "title": "請問 費氏數列 1、1、2、3、5、8、13、21、34、55 ... 的下一個數值是多少?",
+    "selectQuestion": [
+      "85",
+      "87",
+      "89",
+      "91"
+    ],
+    "answer": 2,
+    "ability": 1
+  },
+  {
+    "id": 3,
+    "title": "請問截至2022年為止 下列哪個不是現有推出的PHP版本?",
+    "selectQuestion": [
+      "PHP 5",
+      "PHP 7",
+      "PHP 8",
+      "PHP 9"
+    ],
+    "answer": 3,
+    "ability": 1
+  },
+  {
+    "id": 4,
+    "title": "請問排序演算法「泡沫排序」(bubble sort) 的時間複雜度是?",
+    "selectQuestion": [
+      "O(n)",
+      "O(n平方)",
+      "O(log n)",
+      "O(n log n)"
+    ],
+    "answer": 1,
+    "ability": 2
+  },
+  {
+    "id": 5,
+    "title": "下列哪個選項不是程式語言?",
+    "selectQuestion": [
+      "PHP",
+      "Go",
+      "Python",
+      "Laravel"
+    ],
+    "answer": 3,
+    "ability": 3
+  },
+  {
+    "id": 6,
+    "title": "目前的時間戳(Unix Timestamp)所能顯示的年份,上限為何?",
+    "selectQuestion": [
+      "2034",
+      "2036",
+      "2038",
+      "2040"
+    ],
+    "answer": 2,
+    "ability": 2
+  },
+  {
+    "id": 7,
+    "title": "下列哪一個網站不是刷題類型的網站?",
+    "selectQuestion": [
+      "leetcode",
+      "Codewars",
+      "lintcode",
+      "github"
+    ],
+    "answer": 3,
+    "ability": 1
+  },
+  {
+    "id": 8,
+    "title": "請問網頁連結中的https跟http所差的s,代表什麼意思?",
+    "selectQuestion": [
+      "Sweet",
+      "Secret",
+      "Secure",
+      "Search"
+    ],
+    "answer": 2,
+    "ability": 1
+  },
+  {
+    "id": 9,
+    "title": "下列哪個選項不是網頁前端框架?",
+    "selectQuestion": [
+      "Swift",
+      "React",
+      "Vue",
+      "Angular"
+    ],
+    "answer": 0,
+    "ability": 3
+  }
+]

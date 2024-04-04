@@ -1,0 +1,122 @@
+[
+  {
+    "id": 0,
+    "title": "請問下列哪一個不是目前 iPhone 14 Pro Max 有提供的顏色? (以台灣販售的為準)",
+    "selectQuestion": [
+      "銀色",
+      "金色",
+      "太空黑色",
+      "星光色"
+    ],
+    "answer": 3,
+    "ability": 2
+  },
+  {
+    "id": 1,
+    "title": "請問比特幣(Bitcoin)到目前為止,公認最高的歷史價格大約是多少?",
+    "selectQuestion": [
+      "約6,800美元",
+      "約68,000美元",
+      "約68萬美元",
+      "約680萬美元"
+    ],
+    "answer": 1,
+    "ability": 3
+  },
+  {
+    "id": 2,
+    "title": "請問 特斯拉執行長馬斯克(Elon Musk)最可能「沒有」公開做過哪件事?",
+    "selectQuestion": [
+      "向烏克蘭提供Starlink網路設備支援",
+      "公開表達對虛擬貨幣狗狗幣(Dogecoin)的支持",
+      "在新車發表會上展示防彈玻璃,結果玻璃被敲碎當眾出糗",
+      "為了對蘋果公司的新政策表達不滿,在記者會上把最新款的iPhone丟進強力果汁機裡打成碎片"
+    ],
+    "answer": 3,
+    "ability": 0
+  },
+  {
+    "id": 3,
+    "title": "請問護國神山台積電 在台股的股票代號是?",
+    "selectQuestion": [
+      "0050",
+      "0056",
+      "2412",
+      "2330"
+    ],
+    "answer": 3,
+    "ability": 1
+  },
+  {
+    "id": 4,
+    "title": "請問Facebook的創辦人 馬克祖克柏 讀的大學是哪一所?",
+    "selectQuestion": [
+      "麻省理工學院",
+      "史丹佛大學",
+      "哈佛大學",
+      "劍橋大學"
+    ],
+    "answer": 2,
+    "ability": 3
+  },
+  {
+    "id": 5,
+    "title": "近期內在幣圈倒閉的交易所FTX，其中提供的一項服務「活存」的年利率為幾% ?",
+    "selectQuestion": [
+      "4%",
+      "6%",
+      "8%",
+      "10%"
+    ],
+    "answer": 2,
+    "ability": 2
+  },
+  {
+    "id": 6,
+    "title": "下列哪一個平台不提供短影音服務",
+    "selectQuestion": [
+      "Youtube",
+      "Instagram",
+      "Tiktok",
+      "Dcard"
+    ],
+    "answer": 3,
+    "ability": 0
+  },
+  {
+    "id": 7,
+    "title": "「現實版鋼鐵人」馬斯克，在今年10月收購了哪一個平台?",
+    "selectQuestion": [
+      "Facebook",
+      "Instagram",
+      "twitter",
+      "SpaceX"
+    ],
+    "answer": 2,
+    "ability": 1
+  },
+  {
+    "id": 8,
+    "title": "Apple「2022」年做了什麼政策，讓各家平台氣得跳腳?",
+    "selectQuestion": [
+      "廣告抽成",
+      "隱私權政策",
+      "提高APP上架費用",
+      "更嚴謹的上架審查"
+    ],
+    "answer": 2,
+    "ability": 3
+  },
+  {
+    "id": 9,
+    "title": "美國科技業，目前的狀況為何?",
+    "selectQuestion": [
+      "沒什麼特別",
+      "寒冬冷冽",
+      "蓬勃發展",
+      "不知道"
+    ],
+    "answer": 1,
+    "ability": 0
+  }
+]
